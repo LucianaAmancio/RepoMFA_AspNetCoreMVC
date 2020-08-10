@@ -86,7 +86,7 @@ namespace AspNetCoreMvc.Migrations
 
             modelBuilder.Entity("AspNetCoreMvc.Models.Comida", b =>
                 {
-                    b.HasOne("AspNetCoreMvc.Models.Categoria", "Cattegoria")
+                    b.HasOne("AspNetCoreMvc.Models.Categoria", "Categoria")
                         .WithMany("Comidas")
                         .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)

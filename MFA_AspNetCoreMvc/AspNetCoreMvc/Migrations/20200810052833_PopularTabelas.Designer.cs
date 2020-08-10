@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreMvc.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200807204230_PopularTabelas")]
+    [Migration("20200810052833_PopularTabelas")]
     partial class PopularTabelas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,7 +88,7 @@ namespace AspNetCoreMvc.Migrations
 
             modelBuilder.Entity("AspNetCoreMvc.Models.Comida", b =>
                 {
-                    b.HasOne("AspNetCoreMvc.Models.Categoria", "Cattegoria")
+                    b.HasOne("AspNetCoreMvc.Models.Categoria", "Categoria")
                         .WithMany("Comidas")
                         .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)

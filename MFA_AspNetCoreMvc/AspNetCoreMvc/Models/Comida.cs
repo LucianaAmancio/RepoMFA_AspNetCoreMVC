@@ -4,7 +4,7 @@ namespace AspNetCoreMvc.Models
 {
     public class Comida
     {
-        
+        [Key]
         public int ComidaId { get; set; }
 
         [StringLength(100)]
@@ -30,7 +30,7 @@ namespace AspNetCoreMvc.Models
 
         public int CategoriaId { get; set; }
 
-        public virtual Categoria Cattegoria { get; set; }
+        public virtual Categoria Categoria { get; set; }
 
     }
 }

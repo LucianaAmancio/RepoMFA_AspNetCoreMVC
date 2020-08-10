@@ -13,6 +13,7 @@ namespace AspNetCoreMvc.Models
 
         [StringLength(100)]
         public string Descricao { get; set; }
+
         public List<Comida> Comidas { get; set; }
 
     }

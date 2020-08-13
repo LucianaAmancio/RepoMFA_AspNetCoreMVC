@@ -1,4 +1,5 @@
 using AspNetCoreMvc.Context;
+using AspNetCoreMvc.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,8 +22,15 @@ namespace AspNetCoreMvc
         public void ConfigureServices(IServiceCollection services)
         {
 
+            //Cria o serviço de conexão com o banco de dados
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //Cria o serviço que utiliza as clases da pasta Repository
+            services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+            services.AddTransient<IComidaRepository, ComidaRepository>();
+
+
             services.AddControllersWithViews();
         }
 

@@ -1,4 +1,5 @@
 ﻿using AspNetCoreMvc.Repositories;
+using AspNetCoreMvc.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -31,8 +32,15 @@ namespace AspNetCoreMvc.Controllers
             ViewData["Categoria"] = "Categoria";
 
             //3ª Primeira forma
-            var comidas = _comidaRepository.Comidas;
-            return View(comidas);
+            //var comidas = _comidaRepository.Comidas;
+            //return View(comidas);
+
+
+            //Cria uma instância da View
+            var comidaslistViewModel = new ComidaListViewModel();
+            comidaslistViewModel.Comidas = _comidaRepository.Comidas;
+            comidaslistViewModel.CategoriaAtual = "Categoria Atual";
+            return View(comidaslistViewModel);
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using AspNetCoreMvc.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Net.NetworkInformation;
 
 namespace AspNetCoreMvc.Context
 {
@@ -10,8 +11,8 @@ namespace AspNetCoreMvc.Context
         { }
 
         public DbSet<Comida> Comidas { get; set; }
-
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
 
     }
 }

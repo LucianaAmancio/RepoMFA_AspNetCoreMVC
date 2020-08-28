@@ -5,18 +5,7 @@
 <div class="row">    
     @foreach (var comida in Model.Comidas)
     {
-        <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail">
-                <img src="@comida.ImagemUrl" class="img-rounded" alt="" />
-            </div>
-            <div class="caption">
-                <h3 class="pull-righ">@comida.Preco.ToString("c")</h3>
-                <h3>
-                    @comida.Nome
-                </h3>
-                <p>@comida.DescricaoCurta</p>
-            </div>
-        </div>   
+        @Html.Partial("_ComidasResumo", comida);
     }
 </div>
 

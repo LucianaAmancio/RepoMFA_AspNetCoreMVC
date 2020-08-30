@@ -1,7 +1,9 @@
 using AspNetCoreMvc.Context;
+using AspNetCoreMvc.Models;
 using AspNetCoreMvc.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +32,11 @@ namespace AspNetCoreMvc
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
             services.AddTransient<IComidaRepository, ComidaRepository>();
 
+            //Registra o serviço do CarrinhoCompra
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //Define o carrinho
+            services.AddScoped(cp => CarrinhoCompra.GetCarrinho(cp));
+
 
             services.AddControllersWithViews();
         }
@@ -48,7 +55,11 @@ namespace AspNetCoreMvc
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
+            //Ativa o recurso da Session para ser utilizado pela aplicação. É preciso sinalizar aqui
+            app.UseSession();
 
             app.UseRouting();
 

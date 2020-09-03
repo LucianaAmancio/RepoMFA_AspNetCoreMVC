@@ -37,6 +37,8 @@ namespace AspNetCoreMvc
             //Define o carrinho
             services.AddScoped(cp => CarrinhoCompra.GetCarrinho(cp));
 
+            services.AddMemoryCache();
+            services.AddSession();
 
             services.AddControllersWithViews();
         }

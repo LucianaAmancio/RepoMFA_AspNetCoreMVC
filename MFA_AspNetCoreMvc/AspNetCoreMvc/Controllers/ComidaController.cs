@@ -1,10 +1,10 @@
-﻿using AspNetCoreMvc.Repositories;
+﻿using AspNetCoreMvc.Models;
+using AspNetCoreMvc.Repositories;
 using AspNetCoreMvc.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace AspNetCoreMvc.Controllers
 {
@@ -20,27 +20,41 @@ namespace AspNetCoreMvc.Controllers
             _categoriaRepository = categoriaRepository;
         }
 
-        public IActionResult List() 
+        public IActionResult List(string categoria)
         {
+            string _categoria = categoria;
+            IEnumerable<Comida> comidas;
+            string categoriaAtual = string.Empty;
 
-            //Formas de passar as informações de um Controller para uma View
+            if (string.IsNullOrEmpty(categoria))
+            {
+                comidas = _comidaRepository.Comidas.OrderBy(l => l.ComidaId);
+                categoriaAtual = "Todas as comidas";
+            }
+            else 
+            { 
+                if(string.Equals("Natural", _categoria, StringComparison.OrdinalIgnoreCase))
+                {
+                    comidas = _comidaRepository.Comidas.Where(l => l.Categoria.CategoriaNome.Equals("Natural")).OrderBy(l => l.Nome);
+                }
+                else
+                {
+                    comidas = _comidaRepository.Comidas.Where(l => l.Categoria.CategoriaNome.Equals("Normal")).OrderBy(l => l.Nome);
+                }
 
-            //1ª Primeira forma
-            ViewBag.Comida = "Comidas";
-
-            //2ª Primeira forma
-            ViewData["Categoria"] = "Categoria";
-
-            //3ª Primeira forma
-            //var comidas = _comidaRepository.Comidas;
-            //return View(comidas);
-
+                categoriaAtual = _categoria;    
+                
+            }
 
             //Cria uma instância da View
-            var comidaslistViewModel = new ComidaListViewModel();
-            comidaslistViewModel.Comidas = _comidaRepository.Comidas;
-            comidaslistViewModel.CategoriaAtual = "Categoria Atual";
-            return View(comidaslistViewModel);
+            var comidasListViewModel = new ComidaListViewModel
+            {
+                Comidas = comidas,
+                CategoriaAtual = categoriaAtual
+            };        
+     
+            return View(comidasListViewModel);
+
         }
 
     }

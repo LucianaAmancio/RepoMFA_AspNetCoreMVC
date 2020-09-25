@@ -69,9 +69,17 @@ namespace AspNetCoreMvc
 
             app.UseEndpoints(endpoints =>
             {
+
+                endpoints.MapControllerRoute(
+                    name: "filtrarPorCategoria",
+                    pattern: "Comida/{action}/{categoria}",
+                    defaults: new {Controller="Comida", action="List"}
+                );
+
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                );
             });
         }
     }

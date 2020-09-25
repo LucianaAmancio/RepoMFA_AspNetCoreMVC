@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
+    <header>       
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <!-- Brand -->
             <a class="navbar-brand" href="#">Comidas</a>
             <!-- Links -->
             <ul class="nav navbar-nav">
                 <li><a class="nav-link" href="#">Home</a></li>
-                <li><a class="nav-link" href="#">Contato</a></li>
+                <li><a asp-controller="Contato" asp-action="Index">Contato</a></li>
                 <li><a class="nav-link" href="#">@await Component.InvokeAsync("CarrinhoCompraResumo")</a></li>
             </ul>
         </nav>

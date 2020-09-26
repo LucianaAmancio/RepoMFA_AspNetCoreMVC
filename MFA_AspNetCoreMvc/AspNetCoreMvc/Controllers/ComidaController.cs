@@ -33,9 +33,9 @@ namespace AspNetCoreMvc.Controllers
             }
             else 
             { 
-                if(string.Equals("Natural", _categoria, StringComparison.OrdinalIgnoreCase))
+                if(string.Equals("Fitness", _categoria, StringComparison.OrdinalIgnoreCase))
                 {
-                    comidas = _comidaRepository.Comidas.Where(l => l.Categoria.CategoriaNome.Equals("Natural")).OrderBy(l => l.Nome);
+                    comidas = _comidaRepository.Comidas.Where(l => l.Categoria.CategoriaNome.Equals("Fitness")).OrderBy(l => l.Nome);
                 }
                 else
                 {

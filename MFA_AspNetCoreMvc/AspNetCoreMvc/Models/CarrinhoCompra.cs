@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace AspNetCoreMvc.Models
 {
@@ -98,12 +97,11 @@ namespace AspNetCoreMvc.Models
 
         public List<CarrinhoCompraItem> GetCarrinhoCompraItens()
         {
-            return CarrinhoCompraItens ??
-                (CarrinhoCompraItens =
+            return CarrinhoCompraItens ??=
                     _context.CarrinhoCompraItens.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
                     .Include(s => s.Comida)
                     .ToList()
-                 );
+;
         }
 
         public void LimparCarrinho()

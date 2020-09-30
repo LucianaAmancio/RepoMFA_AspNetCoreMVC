@@ -14,6 +14,5 @@ namespace AspNetCoreMvc.Models
         [StringLength(200)]
         public string CarrinhoCompraId { get; set; }
 
-
     }
 }

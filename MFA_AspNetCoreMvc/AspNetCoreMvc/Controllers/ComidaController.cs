@@ -57,5 +57,17 @@ namespace AspNetCoreMvc.Controllers
 
         }
 
+        public IActionResult Details(int comidaId)
+        {
+            var comida = _comidaRepository.Comidas.FirstOrDefault(l => l.ComidaId == comidaId);
+
+            if (comida == null)
+            {
+                return View("~/Views/Error/Error.cshtml");
+            }
+
+            return View(comida);
+        }
+
     }
 }

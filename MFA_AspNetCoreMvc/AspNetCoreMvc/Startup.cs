@@ -34,7 +34,7 @@ namespace AspNetCoreMvc
 
             //Registra o serviço do CarrinhoCompra
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //Define o carrinho
+            //Define o carrinho para cada requisição sem ter ligação com a instância
             services.AddScoped(cp => CarrinhoCompra.GetCarrinho(cp));
 
             services.AddMemoryCache();

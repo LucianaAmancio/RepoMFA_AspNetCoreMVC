@@ -1,14 +1,13 @@
 ﻿using AspNetCoreMvc.Models;
 using AspNetCoreMvc.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace AspNetCoreMvc.Components
 {
     public class CarrinhoCompraResumo : ViewComponent
     {
         private readonly CarrinhoCompra _carrinhoCompra;
-
+                
         public CarrinhoCompraResumo(CarrinhoCompra carrinhoCompra) 
         {
             _carrinhoCompra = carrinhoCompra;

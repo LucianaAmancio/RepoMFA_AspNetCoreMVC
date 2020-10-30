@@ -15,14 +15,11 @@ namespace AspNetCoreMvc.Controllers
         
         public IActionResult Index()
         {
-
             var homeViewModel = new HomeViewModel
             {
                 ComidasPreferidas = _comidaRepository.ComidasPreferidas
             };
-
             return View(homeViewModel);
         }
-
     }
 }

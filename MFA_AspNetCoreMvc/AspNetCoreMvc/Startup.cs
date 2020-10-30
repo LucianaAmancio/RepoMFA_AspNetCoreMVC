@@ -34,6 +34,7 @@ namespace AspNetCoreMvc
 
             //Registra o serviço do CarrinhoCompra
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             //Define o carrinho para cada requisição sem ter ligação com a instância
             services.AddScoped(cp => CarrinhoCompra.GetCarrinho(cp));
 
@@ -60,7 +61,8 @@ namespace AspNetCoreMvc
 
             app.UseStaticFiles();
 
-            //Ativa o recurso da Session para ser utilizado pela aplicação. É preciso sinalizar aqui
+            //Ativa o recurso da Session para ser utilizado pela aplicação. 
+            //Ativado para criação do carrinho de compras
             app.UseSession();
 
             app.UseRouting();

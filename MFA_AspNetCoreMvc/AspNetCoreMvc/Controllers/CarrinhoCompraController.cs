@@ -18,15 +18,17 @@ namespace AspNetCoreMvc.Controllers
             _carrinhoCompra = carrinhoCompra;
         }
 
+        //Método que exibe o carrinho de compras com base na viewModel
         public IActionResult Index()
         {
             var itens = _carrinhoCompra.GetCarrinhoCompraItens();
             _carrinhoCompra.CarrinhoCompraItens = itens;
 
-            var carrinhoCompraViewModel = new CarrinhoCompraViewModel();
-            var CarrinhoCompra = _carrinhoCompra;
-            var CarrinhoCompraTotal = _carrinhoCompra.GetCarrinhoCompraTotal();
-           
+            var carrinhoCompraViewModel = new CarrinhoCompraViewModel
+            {
+                CarrinhoCompra = _carrinhoCompra,
+                CarrinhoCompraTotal =_carrinhoCompra.GetCarrinhoCompraTotal()
+            };            
             return View(carrinhoCompraViewModel);
          }
 
@@ -38,11 +40,19 @@ namespace AspNetCoreMvc.Controllers
             {
                 _carrinhoCompra.AdicionarAoCarrinho(comidaSelecionada, 1);
             }
-
             return RedirectToAction("Index");
         }
 
-    }  
-    
+        public IActionResult RemoverItemDoCarrinhoCompra(int comidaId)
+        {
+            var comidaSelecionada = _comidaRepository.Comidas.FirstOrDefault(p => p.ComidaId == comidaId);
+
+            if (comidaSelecionada != null)
+            {
+                _carrinhoCompra.RemoverDoCarrinho(comidaSelecionada);
+            }
+            return RedirectToAction("Index");
+        }
+    }      
 }
 

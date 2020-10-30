@@ -13,15 +13,18 @@
             
             <a class="navbar-brand" href="#"><img src="~/Images/Logo.jpg" alt="" width="50" height="30"></a>
             
-            <ul class="nav navbar-nav">                
+            <ul class="nav navbar-nav">
 
                 <li><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
 
                 @await Component.InvokeAsync("CategoriaMenu");
 
                 <li> <a class="nav-link" asp-controller="Contato" asp-action="Index">Contato</a></li>
+                                                
+                    @await Component.InvokeAsync("CarrinhoCompraResumo")
+                
+                <li class="fas fa-shopping-cart"></li>
 
-                @await Component.InvokeAsync("CarrinhoCompraResumo")
             </ul>
         </nav>
 
@@ -33,10 +36,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        @*<div class="container">
-            &copy; 2020 - Comidas  - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>*@
+    <footer class="border-top footer text-muted">        
         <div class="container">
             &copy; 2020 -  Luciana Amancio  
         </div>

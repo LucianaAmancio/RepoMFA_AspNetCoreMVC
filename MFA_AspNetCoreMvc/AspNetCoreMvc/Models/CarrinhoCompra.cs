@@ -20,15 +20,15 @@ namespace AspNetCoreMvc.Models
         public string CarrinhoCompraId { get; set; }
         public List<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
 
-        public static CarrinhoCompra GetCarrinho(IServiceProvider serices) 
+        public static CarrinhoCompra GetCarrinho(IServiceProvider services) 
         {
 
             //define uma sessão acessando o contexto atual (tem que registrar em IServicesColle
             ISession session =
-                serices.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+                services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
             //obtem um serviço do tipo do nosso contexto
-            var context = serices.GetService<AppDbContext>();
+            var context = services.GetService<AppDbContext>();
 
             //obtem ou gera o Id do carrinho                     
             string carrinhoId = session.GetString("CarrinhoId") ?? Guid.NewGuid().ToString();
@@ -97,11 +97,11 @@ namespace AspNetCoreMvc.Models
 
         public List<CarrinhoCompraItem> GetCarrinhoCompraItens()
         {
-            return CarrinhoCompraItens ??=
+            return CarrinhoCompraItens ??
+                (CarrinhoCompraItens =
                     _context.CarrinhoCompraItens.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
                     .Include(s => s.Comida)
-                    .ToList()
-;
+                    .ToList());
         }
 
         public void LimparCarrinho()

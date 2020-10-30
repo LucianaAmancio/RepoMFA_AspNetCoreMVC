@@ -1,54 +1,57 @@
 ﻿@model CarrinhoCompraViewModel
 
-<div class="row checkoutForm">
-    <h2>Seu carrinho de compras</h2>
-    <h4>Aqui estão os seus pedidos</h4>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Quantidade</th>
-                <th>Comida</th>
-                <th class="text-right">Preço</th>
-                <th class="text-right">Subtotal</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.CarrinhoCompra.CarrinhoCompraItens)
-            {
+    <div class="row checkoutForm">
+        <h2>Seu carrinho de compras:</h2>
+        <table class="table table-bordered table-striped">
+            <thead>
                 <tr>
-                    <td class="text-center">@item.Quantidade</td>
-                    <td class="text-left">@item.Comida.Nome</td>
-                    <td class="text-right">@item.Comida.Preco.ToString("c")</td>
-                    <td class="text-right">
-                        @((item.Quantidade * item.Comida.Preco).ToString("c"))
-                    </td>
-                    <td class="text-center"><a class="glyphicon glyphicon-remove text-danger remove" asp-controller="CarrinhoCompra" asp-action="RemoverItemDoCarrinhoCompra" asp-route-ComidaId="@item.Comida.ComidaId"></a></td>
+                    <th class="text-center">Quantidade</th>
+                    <th class="text-center">Comida</th>
+                    <th class="text-center">Preço</th>
+                    <th class="text-center">Subtotal</th>
+                    <th class="text-center">Remover</th>
                 </tr>
-            }
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3" class="text-right">Total:</td>
-                <td class="text-right">
-                    @Model.CarrinhoCompraTotal.ToString("c")
-                </td>
-            </tr>
-        </tfoot>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CarrinhoCompra.CarrinhoCompraItens)
+                {
+                    <tr>
+                        <td class="text-center">@item.Quantidade</td>
+                        <td class="text-center">@item.Comida.Nome</td>
+                        <td class="text-center">@item.Comida.Preco.ToString("c")</td>
+                        <td class="text-center">
+                            @((item.Quantidade * item.Comida.Preco).ToString("c"))
+                        </td>
+                        <td class="text-center">
+                            <a class="glyphicon glyphicon-remove text-danger remove" asp-controller="CarrinhoCompra"
+                               asp-action="RemoverItemDoCarrinhoCompra" asp-route-ComidaId="@item.Comida.ComidaId"></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total:</td>
+                    <td class="text-center">
+                        @Model.CarrinhoCompraTotal.ToString("c")
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
 
-    <div class="text-right">
-        <div class="btn-group ">
-            <a class="btn btn-success" asp-controller="Pedido" asp-action="Checkout">Encerrar Pedido</a>
-            <a class="btn-group">
-                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    Adicionar mais comidas<span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a asp-controller="Comida" asp-action="List" asp-route-categoria="Normal">Normal</a></li>
-                    <li><a asp-controller="Comida" asp-action="List" asp-route-categoria="Fitness">Fitness</a></li>
-                </ul>
-            </a>
+        <div class="text-right">
+            <div class="btn-group ">
+                <a class="btn btn-success" asp-controller="Pedido" asp-action="Checkout">Encerrar Pedido</a>                
+                <div class="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Adicionar mais comidas
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#"><a asp-controller="Comida" asp-action="List" asp-route-categoria="Normal">Normal</a></a>
+                        <a class="dropdown-item" href="#"><a asp-controller="Comida" asp-action="List" asp-route-categoria="Fitness">Fitness</a></a>
+                    </div>
+            </div>
         </div>
+
+       
     </div>
-</div>

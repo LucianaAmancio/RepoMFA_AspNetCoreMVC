@@ -17,7 +17,7 @@ namespace AspNetCoreMvc.Components
         {
             var itens = _carrinhoCompra.GetCarrinhoCompraItens();
 
-           // var itens = new List<CarrinhoCompraItem>() { new CarrinhoCompraItem(), new CarrinhoCompraItem() };
+           //var itens = new System.Collections.Generic.List<CarrinhoCompraItem>() { new CarrinhoCompraItem(), new CarrinhoCompraItem()};
 
             _carrinhoCompra.CarrinhoCompraItens = itens;
 

@@ -1,16 +1,12 @@
 ﻿@model CarrinhoCompraViewModel
 
 @if (Model.CarrinhoCompra.CarrinhoCompraItens.Count > 0)
-{
-
-    //Bootstrap
+{    
     <li>
-        <a class="nav-link" asp-controller="CarrinhoCompra">
-            <span class="glyphicon glyphicon-shopping-cart"></span>
-            <span id="cart-status">
+        <a class="nav-link" asp-controller="CarrinhoCompra">  
+            <span class="fas fa-shopping-cart" id="cart-status">
                 @Model.CarrinhoCompra.CarrinhoCompraItens.Count
             </span>
         </a>
     </li>
-
 }

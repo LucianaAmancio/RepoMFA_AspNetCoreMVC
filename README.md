@@ -1,2 +1,4 @@
 # RepoMFA_AspNetCoreMVC
-Repositório da Minha Primeira Aplicação Asp.Net Core MVC
+Meu primeiro site de e-commerce, desenvolvido pra treinar habilidades em Asp.Net Core MVC com Bootstrap.
+
+

@@ -31,6 +31,7 @@ namespace AspNetCoreMvc
             //Cria o serviço que utiliza as clases da pasta Repository
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
             services.AddTransient<IComidaRepository, ComidaRepository>();
+            services.AddTransient<IPedidoRepository, PedidoRepository>();
 
             //Registra o serviço do CarrinhoCompra
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

@@ -12,7 +12,7 @@ namespace AspNetCoreMvc.Migrations
                 "INSERT INTO Categorias(CategoriaNome," +
                 "Descricao) " +
 
-                "VALUES('Lanche Natural'," +
+                "VALUES('Lanche Fitness'," +
                 "'Lanche feito com ingredientes integrais e naturais')"
 
                 );
@@ -30,7 +30,7 @@ namespace AspNetCoreMvc.Migrations
                 "EmEstoque, " +
                 "CategoriaId)" +
 
-                "VALUES('Lanche Natural'," +
+                "VALUES('Lanche Fitness'," +
                 "'teste', " +
                 "'teste teste teste', " +
                 "12.5," +

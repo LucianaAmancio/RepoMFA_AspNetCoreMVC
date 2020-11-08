@@ -1,13 +1,21 @@
 ﻿@model Comida
 
 <div class="col-sm-4 col-lg-4 col-md-4">
-    <div class="thumbnail">        
-        <img src="@Model.ImagemUrl" class="img-rounded" alt="@Model.Nome" width="225" height="225" />
+    <div class="thumbnail">
+        
+        @*Não está mais funcionando dessa forma. Por quê?*@    
+        @*<img src="@Model.ImagemUrl" class="img-rounded" alt="@Model.Nome" width="225" height="225" />*@
+
+        @*Assim também não funcionando. Por quê?*@
+        @*<img src="~/images/comidas/@Model.ImagemUrl" class="img-rounded" alt="@Model.Nome" width="225" height="225" />*@
+        
+        @*Assim está funcionando.*@
+        <img src="~/images/comidas/Fitness001.jpg" class="img-rounded" alt="@Model.Nome" width="225" height="225" />        
     </div>
     <div class="caption">
         <h3 class="pull-righ">@Model.Preco.ToString("c")</h3>
         <h3>
-            <a asp-controller="Comida" asp-action="Details" asp-route-comidaId="@Model.ComidaId">@Model.Nome</a>                                 
+            <a asp-controller="Comida" asp-action="Details" asp-route-comidaId="@Model.ComidaId">@Model.Nome</a>
         </h3>
         <p>@Model.DescricaoCurta</p>
     </div>
@@ -19,3 +27,4 @@
         </p>
     </div>
 </div>
+

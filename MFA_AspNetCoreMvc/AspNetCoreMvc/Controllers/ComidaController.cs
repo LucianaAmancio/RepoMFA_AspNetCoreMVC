@@ -69,5 +69,23 @@ namespace AspNetCoreMvc.Controllers
             return View(comida);
         }
 
+        public IActionResult Search(string searchstring) 
+        {
+            string _searchstring = searchstring;
+            IEnumerable<Comida> comidas;
+            string _categoriaAtual = string.Empty;
+
+            if (string.IsNullOrEmpty(_searchstring)) 
+            {
+                comidas = _comidaRepository.Comidas.OrderBy(l => l.ComidaId);                   
+            }
+            else 
+            {
+                comidas = _comidaRepository.Comidas.Where(l => l.Nome.ToLower().Contains(_searchstring.ToLower()));                
+            }
+
+            return View("~/Views/Comida/List.cshtml", new ComidaListViewModel { Comidas = comidas, CategoriaAtual = "Todas as comidas" });
+        }
+
     }
 }

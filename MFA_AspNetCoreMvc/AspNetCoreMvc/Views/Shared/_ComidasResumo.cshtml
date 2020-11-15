@@ -2,15 +2,8 @@
 
 <div class="col-sm-4 col-lg-4 col-md-4">
     <div class="thumbnail">
-        
-        @*Não está mais funcionando dessa forma. Por quê?*@    
-        @*<img src="@Model.ImagemUrl" class="img-rounded" alt="@Model.Nome" width="225" height="225" />*@
-
-        @*Assim também não funcionando. Por quê?*@
-        @*<img src="~/images/comidas/@Model.ImagemUrl" class="img-rounded" alt="@Model.Nome" width="225" height="225" />*@
-        
-        @*Assim está funcionando.*@
-        <img src="~/images/comidas/Fitness001.jpg" class="img-rounded" alt="@Model.Nome" width="225" height="225" />        
+        @*Assim também não funcionando. Por quê? Porque a pasta das imagens estava como somente leitura. Retirei essa restrição e funcionou.*@
+        <img src="~/images/comidas/@Model.ImagemUrl" class="img-rounded" alt="@Model.Nome" width="225" height="225" />
     </div>
     <div class="caption">
         <h3 class="pull-righ">@Model.Preco.ToString("c")</h3>

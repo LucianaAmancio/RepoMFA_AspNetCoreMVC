@@ -1,13 +1,13 @@
 ﻿using AspNetCoreMvc.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Net.NetworkInformation;
+
 
 namespace AspNetCoreMvc.Context
 {
-    public class AppDbContext: DbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
-
-        public AppDbContext(DbContextOptions<AppDbContext> options): base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         { }
 
         public DbSet<Comida> Comidas { get; set; }        
@@ -16,4 +16,5 @@ namespace AspNetCoreMvc.Context
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<PedidoDetalhe> PedidoDetalhes { get; set; }
     }
+   
 }

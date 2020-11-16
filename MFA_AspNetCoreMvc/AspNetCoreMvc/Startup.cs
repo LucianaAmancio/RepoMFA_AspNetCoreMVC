@@ -4,6 +4,7 @@ using AspNetCoreMvc.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,10 @@ namespace AspNetCoreMvc
             //Cria o serviço de conexão com o banco de dados
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                  .AddEntityFrameworkStores<AppDbContext>()
+                  .AddDefaultTokenProviders();
 
             //Cria o serviço que utiliza as clases da pasta Repository
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
@@ -65,6 +70,8 @@ namespace AspNetCoreMvc
             //Ativa o recurso da Session para ser utilizado pela aplicação. 
             //Ativado para criação do carrinho de compras
             app.UseSession();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 

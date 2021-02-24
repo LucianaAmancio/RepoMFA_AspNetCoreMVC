@@ -23,8 +23,7 @@
                             @((item.Quantidade * item.Comida.Preco).ToString("c"))
                         </td>
                         <td class="text-center">
-                            <a class="glyphicon glyphicon-remove text-danger remove" asp-controller="CarrinhoCompra"
-                               asp-action="RemoverItemDoCarrinhoCompra" asp-route-ComidaId="@item.Comida.ComidaId"></a>
+                            <a class="glyphicon glyphicon-remove text-danger remove" asp-controller="CarrinhoCompra" asp-action="RemoverItemDoCarrinhoCompra" asp-route-ComidaId="@item.Comida.ComidaId"></a>
                         </td>
                     </tr>
                 }
@@ -38,6 +37,7 @@
                 </tr>
             </tfoot>
         </table>
+        
 
         <div class="text-right">
             <div class="btn-group ">
@@ -50,8 +50,7 @@
                         <a class="dropdown-item" href="#"><a asp-controller="Comida" asp-action="List" asp-route-categoria="Normal">Normal</a></a>
                         <a class="dropdown-item" href="#"><a asp-controller="Comida" asp-action="List" asp-route-categoria="Fitness">Fitness</a></a>
                     </div>
-            </div>
+                </div>
+            </div>       
         </div>
-
-       
     </div>

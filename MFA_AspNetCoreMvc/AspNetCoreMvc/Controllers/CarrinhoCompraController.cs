@@ -1,6 +1,7 @@
 ﻿using AspNetCoreMvc.Models;
 using AspNetCoreMvc.Repositories;
 using AspNetCoreMvc.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -32,6 +33,7 @@ namespace AspNetCoreMvc.Controllers
             return View(carrinhoCompraViewModel);
          }
 
+        [Authorize]
         public RedirectToActionResult AdicionarItemNoCarrinhoCompra(int comidaId)
         {
             var comidaSelecionada = _comidaRepository.Comidas.FirstOrDefault(p => p.ComidaId == comidaId);
@@ -43,6 +45,7 @@ namespace AspNetCoreMvc.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public IActionResult RemoverItemDoCarrinhoCompra(int comidaId)
         {
             var comidaSelecionada = _comidaRepository.Comidas.FirstOrDefault(p => p.ComidaId == comidaId);

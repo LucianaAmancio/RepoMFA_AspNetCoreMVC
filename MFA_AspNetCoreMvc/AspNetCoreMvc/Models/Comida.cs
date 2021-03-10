@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AspNetCoreMvc.Models
 {
@@ -16,6 +17,7 @@ namespace AspNetCoreMvc.Models
         [StringLength(255)]
         public string DescricaoDetalhada { get; set; }
 
+        [Column(TypeName="decimal(18,2)")]        
         public decimal Preco { get; set; }
 
         [StringLength(200)]

@@ -22,15 +22,21 @@
                 <li> <a class="nav-link" asp-controller="Contato" asp-action="Index">Contato</a></li>
 
                 @await Component.InvokeAsync("CarrinhoCompraResumo")
-
-                <li class="fas fa-shopping-cart"></li>
             </ul>
+
+            @await Html.PartialAsync("_LoginPartial");
+
             <form class="navbar-form navbar-right" asp-controller="Comida" asp-action="Search" method="get">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Procurar comida" name="searchString" value="@ViewData["searchString"]">
                 </div>
             </form>
-        </nav>        
+
+
+
+        </nav>
+
+
         <br>
     </header>
     <div class="container">

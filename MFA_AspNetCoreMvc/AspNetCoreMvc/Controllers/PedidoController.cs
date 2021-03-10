@@ -1,5 +1,6 @@
 ﻿using AspNetCoreMvc.Models;
 using AspNetCoreMvc.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreMvc.Controllers
@@ -16,12 +17,14 @@ namespace AspNetCoreMvc.Controllers
         }
 
         [HttpGet]
+        [Authorize]    
         public IActionResult Checkout()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Checkout(Pedido pedido)
         {
             var itens = _carrinhoCompra.GetCarrinhoCompraItens();

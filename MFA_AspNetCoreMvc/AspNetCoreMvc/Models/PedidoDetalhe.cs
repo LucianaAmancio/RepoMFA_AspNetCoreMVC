@@ -1,4 +1,6 @@
-﻿namespace AspNetCoreMvc.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AspNetCoreMvc.Models
 {
     public class PedidoDetalhe
     {
@@ -6,6 +8,8 @@
         public int PedidoId { get; set; }
         public int ComidaId { get; set; }
         public int  Quantidade { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Preco  { get; set; }
 
         //Indica ao framework o relacionamento entre as classes Pedido e PedidoDetalhe

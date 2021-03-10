@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AspNetCoreMvc.ViewModels;
+﻿using AspNetCoreMvc.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace AspNetCoreMvc.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -32,6 +31,7 @@ namespace AspNetCoreMvc.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel loginVM) 
         {
             if (!ModelState.IsValid)
@@ -55,5 +55,37 @@ namespace AspNetCoreMvc.Controllers
             ModelState.AddModelError("", "Usuário ou Senha inválidos ou não localizados");
             return View(loginVM);
         }
+
+        [HttpGet]
+        public IActionResult Register() 
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Bloqueia a falsificação do dados envidados para o servidor. Eviata ataque do tipo CSRF (Cross-Site Request Forgery). 
+        public async Task<IActionResult> Register(LoginViewModel registroVM) 
+        {
+            if (ModelState.IsValid) 
+            {
+                var user = new IdentityUser() { UserName = registroVM.UserName };
+
+                var result = await _userManager.CreateAsync(user, registroVM.Password);
+
+                if (result.Succeeded) 
+                {
+                    return RedirectToAction("Index", "Home");
+                }               
+            }
+            return View(registroVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+            
     }
 }

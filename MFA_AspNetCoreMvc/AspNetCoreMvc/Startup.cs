@@ -79,6 +79,11 @@ namespace AspNetCoreMvc
 
             app.UseEndpoints(endpoints =>
             {
+                //informando ao framework que está usando area
+                endpoints.MapControllerRoute(
+                   name: "AdminArea",
+                   pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
+                );
 
                 endpoints.MapControllerRoute(
                     name: "filtrarPorCategoria",

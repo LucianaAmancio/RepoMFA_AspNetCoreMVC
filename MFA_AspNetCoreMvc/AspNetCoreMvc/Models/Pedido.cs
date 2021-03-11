@@ -58,9 +58,17 @@ namespace AspNetCoreMvc.Models
         [ScaffoldColumn(false)] //Não exibe essa coluna na View
         public decimal PedidoTotal { get; set; }
 
-        [BindNever]
-        [ScaffoldColumn(false)]
+        //[BindNever]
+        //[ScaffoldColumn(false)]
+        [Display(Name = "Data/Hora de Recebimento do Pedido")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime PedidoEnviado  { get; set; }
+
+        [Display(Name = "Data/Hora da Entrega do Pedido")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
+        public DateTime? PedidoEntregueEm { get; set; }
 
     }
 }

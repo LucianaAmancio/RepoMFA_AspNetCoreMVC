@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreMvc.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -21,6 +21,7 @@ namespace AspNetCoreMvc.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login(string returnUrl) 
         { 
             return View(new LoginViewModel()
@@ -57,30 +58,40 @@ namespace AspNetCoreMvc.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register() 
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken] //Bloqueia a falsificação do dados envidados para o servidor. Eviata ataque do tipo CSRF (Cross-Site Request Forgery). 
         public async Task<IActionResult> Register(LoginViewModel registroVM) 
         {
             if (ModelState.IsValid) 
             {
                 var user = new IdentityUser() { UserName = registroVM.UserName };
-
                 var result = await _userManager.CreateAsync(user, registroVM.Password);
 
                 if (result.Succeeded) 
                 {
-                    return RedirectToAction("Index", "Home");
+                    //// Adiciona o usuário padrão ao perfil Member
+                    await _userManager.AddToRoleAsync(user, "Member");
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    return RedirectToAction("LoggedIn", "Account");
                 }               
             }
             return View(registroVM);
         }
 
+        [AllowAnonymous]
+        public ViewResult LoggedIn() => View();
+
         [HttpPost]
+        //[Authorize]
+        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

@@ -38,7 +38,7 @@ namespace AspNetCoreMvc.Migrations
                 "'http://www.macoratti.net/Imagens/lanches/cheesesalada1.jpg'," +
                 "0," +
                 "1," +
-                "1)"
+                "(SELECT CategoriaId FROM Categorias WHERE CategoriaName='Natural'))"
             );
 
         }

@@ -24,7 +24,7 @@
                 @await Component.InvokeAsync("CarrinhoCompraResumo")
             </ul>
 
-            @await Html.PartialAsync("_LoginPartial");
+           *@await Html.PartialAsync("_LoginPartial");
 
             <form class="navbar-form navbar-right" asp-controller="Comida" asp-action="Search" method="get">
                 <div class="form-group">
@@ -33,7 +33,7 @@
             </form>
         </nav>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LanchesMac</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -62,7 +62,7 @@
                     @await Html.PartialAsync("_LoginPartial")
                 </div>
             </div>
-        </nav>
+        </nav>*@
 
 
         <br>

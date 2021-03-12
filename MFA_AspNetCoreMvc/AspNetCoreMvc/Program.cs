@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreMvc.Extensao;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -13,7 +14,11 @@ namespace AspNetCoreMvc
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            //criamos o método de extensão CreateAdminRole
+            CreateHostBuilder(args)
+               .Build()
+               .CreateAdminRole()
+               .Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

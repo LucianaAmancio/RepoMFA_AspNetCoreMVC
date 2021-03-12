@@ -33,21 +33,28 @@ namespace AspNetCoreMvc
                   .AddEntityFrameworkStores<AppDbContext>()
                   .AddDefaultTokenProviders();
 
+            services.ConfigureApplicationCookie(options => options.AccessDeniedPath = "/Home/AccessDenied");
+
+            //fornece uma instancia de HttpContextAcessor //Registra o serviço do CarrinhoCompra
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();          
+
             //Cria o serviço que utiliza as clases da pasta Repository
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
             services.AddTransient<IComidaRepository, ComidaRepository>();
             services.AddTransient<IPedidoRepository, PedidoRepository>();
 
-            //Registra o serviço do CarrinhoCompra
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+            //cria um objeto Scoped, ou seja um objeto que esta associado a requisição
+            //isso significa que se duas pessoas solicitarem o objeto CarrinhoCompra ao  mesmo tempo
+            //elas vão obter instâncias diferentes
             //Define o carrinho para cada requisição sem ter ligação com a instância
             services.AddScoped(cp => CarrinhoCompra.GetCarrinho(cp));
 
+            services.AddControllersWithViews();
+
+            //configura o uso da Sessão
             services.AddMemoryCache();
             services.AddSession();
-
-            services.AddControllersWithViews();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,18 +70,14 @@ namespace AspNetCoreMvc
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            //Ativa o recurso da Session para ser utilizado pela aplicação. 
-            //Ativado para criação do carrinho de compras
-            app.UseSession();
+            app.UseRouting();                     
+            app.UseSession(); //Ativa o recurso da Session para ser utilizado pela aplicação. //Ativado para criação do carrinho de compras
 
-            app.UseAuthentication();
-
-            app.UseRouting();
-
+            app.UseAuthentication();          
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -87,7 +90,7 @@ namespace AspNetCoreMvc
 
                 endpoints.MapControllerRoute(
                     name: "filtrarPorCategoria",
-                    pattern: "Comida/{action}/{categoria}",
+                    pattern: "Comida/{action}/{categoria?}",
                     defaults: new {Controller="Comida", action="List"}
                 );
 

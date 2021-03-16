@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreMvc.Controllers
 {
-   // [Authorize]
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -80,7 +80,6 @@ namespace AspNetCoreMvc.Controllers
                     await _userManager.AddToRoleAsync(user, "Member");
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    //return RedirectToAction("LoggedIn", "Account");
                     return RedirectToAction("Login", "Account");
                 }               
             }
@@ -89,11 +88,9 @@ namespace AspNetCoreMvc.Controllers
 
         [AllowAnonymous]
         public ViewResult Login() => View();
-        //public ViewResult LoggedIn() => View();
-
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {

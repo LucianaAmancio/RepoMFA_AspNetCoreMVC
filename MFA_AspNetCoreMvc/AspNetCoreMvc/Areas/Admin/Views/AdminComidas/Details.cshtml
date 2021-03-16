@@ -3,69 +3,68 @@
 @{
     ViewData["Title"] = "Details";
 }
-
-<h2>Detalhes da Comida</h2>
-
+<h3>Detalhes</h3>
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <dl class="row">
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
-        <dd>
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Nome)
         </dd>
-        <dt>
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.DescricaoCurta)
         </dt>
-        <dd>
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.DescricaoCurta)
         </dd>
-        <dt>
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.DescricaoDetalhada)
         </dt>
-        <dd>
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.DescricaoDetalhada)
         </dd>
-        <dt>
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.Preco)
         </dt>
-        <dd>
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Preco)
         </dd>
-        <dt>
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.ImagemUrl)
         </dt>
-        <dd>
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.ImagemUrl)
         </dd>
-        <dt>
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.ImagemThumbnailUrl)
         </dt>
-        <dd>
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.ImagemThumbnailUrl)
         </dd>
-        <dt>
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.IsComidaPreferida)
         </dt>
-        <dd>
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.IsComidaPreferida)
         </dd>
-        <dt>
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.EmEstoque)
         </dt>
-        <dd>
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.EmEstoque)
         </dd>
-        <dt>
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.Categoria)
         </dt>
-        <dd>
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Categoria.CategoriaNome)
         </dd>
     </dl>
 </div>
+<hr />
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ComidaId">Editar comida</a> |
-    <a asp-action="Index">Retornar para a Lista</a>
+    <a asp-action="Edit" asp-route-id="@Model.ComidaId">Editar</a> |
+    <a asp-action="Index" class="btn btn-outline-info">Retornar</a>
 </div>

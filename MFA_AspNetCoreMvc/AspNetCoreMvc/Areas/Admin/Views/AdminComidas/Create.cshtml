@@ -1,10 +1,12 @@
 ﻿@model AspNetCoreMvc.Models.Comida
-<br />
-<h2>Incluir um novo Comida</h2>
-<br />
+
+@{
+    ViewData["Title"] = "Create";
+}
+<h3>Criar Comida</h3>
 <hr />
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-10">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -37,32 +39,25 @@
                 <input asp-for="ImagemThumbnailUrl" class="form-control" />
                 <span asp-validation-for="ImagemThumbnailUrl" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="IsComidaPreferida" /> @Html.DisplayNameFor(model => model.IsComidaPreferida)
-                    </label>
-                </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsComidaPreferida" /> @Html.DisplayNameFor(model => model.IsComidaPreferida)
+                </label>
             </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="EmEstoque" /> @Html.DisplayNameFor(model => model.EmEstoque)
-                    </label>
-                </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="EmEstoque" /> @Html.DisplayNameFor(model => model.EmEstoque)
+                </label>
             </div>
             <div class="form-group">
                 <label asp-for="CategoriaId" class="control-label"></label>
                 <select asp-for="CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Criar Comida" class="btn btn-default" />
+                <input type="submit" value="Criar comida" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-info">Retornar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Retornar para a Lista</a>
 </div>
 

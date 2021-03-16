@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AspNetCoreMvc.Context;
+﻿using AspNetCoreMvc.Context;
 using AspNetCoreMvc.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AspNetCoreMvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
-    public class AdminLanchesController : Controller
+    public class AdminComidasController : Controller
     {
         private readonly AppDbContext _context;
 
-        public AdminLanchesController(AppDbContext context)
+        public AdminComidasController(AppDbContext context)
         {
             _context = context;
         }
@@ -39,7 +37,7 @@ namespace AspNetCoreMvc.Areas.Admin.Controllers
 
             var comida = await _context.Comidas
                 .Include(l => l.Categoria)
-                .SingleOrDefaultAsync(m => m.ComidaId == id);
+                .FirstOrDefaultAsync(m => m.ComidaId == id);
             if (comida == null)
             {
                 return NotFound();
@@ -80,7 +78,7 @@ namespace AspNetCoreMvc.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var comida = await _context.Comidas.SingleOrDefaultAsync(m => m.ComidaId == id);
+            var comida = await _context.Comidas.FindAsync(id);
             if (comida == null)
             {
                 return NotFound();
@@ -135,7 +133,7 @@ namespace AspNetCoreMvc.Areas.Admin.Controllers
 
             var comida = await _context.Comidas
                 .Include(l => l.Categoria)
-                .SingleOrDefaultAsync(m => m.ComidaId == id);
+                .FirstOrDefaultAsync(m => m.ComidaId == id);
             if (comida == null)
             {
                 return NotFound();
@@ -149,7 +147,7 @@ namespace AspNetCoreMvc.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var comida = await _context.Comidas.SingleOrDefaultAsync(m => m.ComidaId == id);
+            var comida = await _context.Comidas.FindAsync(id);
             _context.Comidas.Remove(comida);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -161,3 +159,4 @@ namespace AspNetCoreMvc.Areas.Admin.Controllers
         }
     }
 }
+

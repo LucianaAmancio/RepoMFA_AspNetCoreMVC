@@ -22,7 +22,7 @@ namespace AspNetCoreMvc.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Admin/AdminLanches
+        // GET: Admin/AdminComidas
         public async Task<IActionResult> Index()
         {
             var appDbContext = _context.Comidas.Include(l => l.Categoria);
@@ -55,7 +55,7 @@ namespace AspNetCoreMvc.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Admin/AdminLanches/Create
+        // POST: Admin/AdminComidas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]

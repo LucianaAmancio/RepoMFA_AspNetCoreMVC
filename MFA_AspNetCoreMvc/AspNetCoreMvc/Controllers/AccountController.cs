@@ -80,14 +80,17 @@ namespace AspNetCoreMvc.Controllers
                     await _userManager.AddToRoleAsync(user, "Member");
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    return RedirectToAction("LoggedIn", "Account");
+                    //return RedirectToAction("LoggedIn", "Account");
+                    return RedirectToAction("Login", "Account");
                 }               
             }
             return View(registroVM);
         }
 
         [AllowAnonymous]
-        public ViewResult LoggedIn() => View();
+        public ViewResult Login() => View();
+        //public ViewResult LoggedIn() => View();
+
 
         [HttpPost]
         //[Authorize]
